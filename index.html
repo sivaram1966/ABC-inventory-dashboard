@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ABC Inventory Optimization Dashboard</title><link rel="icon" href="data:,">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--bg2:#1a1446;--card:rgba(255,255,255,.06);--bd:rgba(255,255,255,.12);--tx:#eef1ff;--mu:#9aa3c7;--a:#22d3ee;--b:#a78bfa;--c:#f472b6;--g:#34d399;--y:#fbbf24;--grid:rgba(255,255,255,.08);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){color-scheme:light;--bg:#f3f5ff;--bg2:#e2dcff;--card:rgba(255,255,255,.75);--bd:rgba(30,30,80,.12);--tx:#161a3a;--mu:#5b6390;--grid:rgba(30,30,80,.08);--a:#0891b2;--b:#7c3aed;--c:#db2777;--g:#059669;--y:#d97706}}
+:root[data-theme="light"]{color-scheme:light;--bg:#f3f5ff;--bg2:#e2dcff;--card:rgba(255,255,255,.75);--bd:rgba(30,30,80,.12);--tx:#161a3a;--mu:#5b6390;--grid:rgba(30,30,80,.08);--a:#0891b2;--b:#7c3aed;--c:#db2777;--g:#059669;--y:#d97706}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--tx);background:radial-gradient(1200px 600px at 10% -10%,var(--bg2),transparent),var(--bg);min-height:100vh}
+.w{max-width:1200px;margin:auto;padding:22px 16px 40px}
+header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+h1{margin:0;font-size:clamp(22px,4vw,34px);background:linear-gradient(90deg,var(--a),var(--b),var(--c));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--mu);font-size:13px;margin-top:4px}
+.pill{border:1px solid var(--bd);background:var(--card);border-radius:99px;padding:6px 14px;font-size:12px;color:var(--mu);display:flex;gap:6px;align-items:center}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--g);box-shadow:0 0 8px var(--g)}
+.g{display:grid;gap:14px}.k{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-bottom:14px}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:18px;backdrop-filter:blur(10px);position:relative;overflow:hidden}
+.k .c:before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--ac)}
+.l{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--mu)}
+.v{font-size:clamp(24px,4vw,32px);font-weight:800;margin:6px 0 2px}.n{font-size:12px;color:var(--mu)}
+.r{grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));margin-bottom:14px}.wide{grid-column:1/-1}
+h3{margin:0 0 12px;font-size:14px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.t button{background:transparent;border:1px solid var(--bd);color:var(--mu);padding:4px 11px;border-radius:99px;font-size:11px;cursor:pointer}
+.t button.on{background:var(--a);color:#06121a;border-color:var(--a);font-weight:700}
+.h{position:relative;height:270px}
+table{width:100%;border-collapse:collapse;font-size:13px}th{color:var(--mu);font-size:11px;text-transform:uppercase;text-align:left;padding:8px;border-bottom:1px solid var(--bd)}td{padding:9px 8px;border-bottom:1px solid var(--bd)}
+.bar{height:8px;border-radius:9px;background:var(--grid);overflow:hidden}.bar b{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--a),var(--b))}
+.sc{overflow-x:auto}.f{color:var(--mu);font-size:11px;margin-top:18px;text-align:center}
+</style></head><body><div class="w">
+<header><div><h1>Multi-Echelon Inventory Optimization</h1><div class="sub">Artificial Bee Colony · 2 factories · 1 DC · 3 agents · 4 products · 52 weeks</div></div><div class="pill"><i></i>Converged · 200 cycles · 50 bees</div></header>
+<section class="g k">
+<div class="c" style="--ac:var(--c)"><div class="l">Baseline cost</div><div class="v" data-n="2014.34" data-p="$">$0</div><div class="n">Before optimization</div></div>
+<div class="c" style="--ac:var(--g)"><div class="l">Optimized cost</div><div class="v" data-n="778.37" data-p="$">$0</div><div class="n">After 200 cycles</div></div>
+<div class="c" style="--ac:var(--a)"><div class="l">Cost reduction</div><div class="v" data-n="61.36" data-s="%">0%</div><div class="n">$1,235.97 saved</div></div>
+<div class="c" style="--ac:var(--y)"><div class="l">Production share</div><div class="v" data-n="73.7" data-s="%">0%</div><div class="n">Dominant cost driver</div></div>
+<div class="c" style="--ac:var(--b)"><div class="l">Decision variables</div><div class="v" data-n="18" data-d="0">0</div><div class="n">Stock levels · 52 periods</div></div>
+</section>
+<section class="g r">
+<div class="c wide"><h3>Fitness convergence <span class="n">best cost per cycle</span></h3><div class="h"><canvas id="c1"></canvas></div></div>
+<div class="c"><h3>Cost composition</h3><div class="h"><canvas id="c2"></canvas></div></div>
+<div class="c"><h3>Weekly cost <span class="t" id="tg"><button class="on" data-m="w">Weekly</button><button data-m="c">Cumulative</button></span></h3><div class="h"><canvas id="c3"></canvas></div></div>
+<div class="c"><h3>Optimal stock level by echelon</h3><div class="h"><canvas id="c4"></canvas></div></div>
+<div class="c"><h3>Final bee population fitness</h3><div class="h"><canvas id="c5"></canvas></div></div>
+</section>
+<div class="c"><h3>Echelon summary</h3><div class="sc"><table><thead><tr><th>Echelon</th><th>Nodes</th><th>Stock policy (units)</th><th style="width:30%">Relative level</th></tr></thead><tbody>
+<tr><td>Factories</td><td>2</td><td>100 – 150</td><td><div class="bar"><b style="width:100%"></b></div></td></tr>
+<tr><td>Distribution centre</td><td>1</td><td>50</td><td><div class="bar"><b style="width:40%"></b></div></td></tr>
+<tr><td>Agents</td><td>3</td><td>50</td><td><div class="bar"><b style="width:40%"></b></div></td></tr></tbody></table></div></div>
+<div class="f">Headline figures (costs, reduction, production share, stock policy) are from the executed Python run (Oct 20, 2026). Convergence curve, weekly series, bee distribution and the non-production cost split are reconstructed from a re-run of the ABC algorithm and are indicative.</div>
+</div>
+<script>
+const D={"conv": [2013.65, 1994.94, 1994.94, 1985.04, 1906.12, 1875.61, 1873.97, 1857.69, 1857.69, 1857.69, 1857.27, 1857.07, 1856.57, 1746.34, 1648.22, 1648.22, 1552.88, 1552.81, 1552.81, 1459.35, 1451.2, 1451.2, 1432.26, 1429.92, 1241.44, 1241.44, 1241.41, 1236.43, 1236.43, 1061.72, 1061.72, 1057.8, 1057.8, 1057.54, 1057.54, 1052.77, 1038.83, 1008.82, 1007.93, 1004.34, 985.56, 977.52, 955.13, 953.04, 953.04, 938.62, 933.08, 932.82, 932.8, 932.8, 888.63, 888.63, 888.63, 886.78, 886.78, 886.78, 886.06, 886.05, 868.93, 867.57, 866.04, 864.68, 864.65, 863.77, 863.7, 863.19, 862.18, 860.36, 860.36, 853.67, 841.34, 841.34, 840.1, 839.34, 839.34, 839.34, 839.34, 839.34, 839.34, 838.67, 836.45, 806.14, 806.14, 805.01, 804.92, 803.0, 803.0, 802.72, 802.72, 802.72, 801.87, 801.87, 801.87, 801.86, 801.38, 801.38, 801.37, 801.37, 801.2, 801.06, 801.06, 800.42, 800.42, 800.42, 800.42, 799.9, 799.9, 799.9, 799.57, 799.52, 799.5, 799.5, 799.5, 799.37, 799.37, 799.37, 799.37, 799.01, 798.96, 798.93, 798.93, 798.93, 798.91, 798.91, 798.91, 798.91, 798.91, 798.91, 798.91, 798.91, 798.91, 798.91, 798.91, 795.44, 795.44, 793.01, 793.0, 793.0, 793.0, 793.0, 793.0, 793.0, 793.0, 793.0, 793.0, 793.0, 793.0, 792.99, 792.98, 792.98, 792.98, 792.98, 792.98, 792.98, 792.98, 792.98, 787.79, 787.79, 787.79, 787.79, 787.79, 787.79, 785.58, 785.58, 785.58, 785.58, 785.58, 785.58, 785.58, 785.58, 785.58, 785.58, 785.58, 785.58, 785.57, 785.57, 785.57, 785.57, 785.1, 782.71, 780.35, 780.35, 780.35, 780.35, 780.35, 780.35, 780.35, 780.26, 780.26, 780.25, 778.37, 778.37, 778.37, 778.37, 778.37, 778.37, 778.37, 778.37, 778.37, 778.37], "base": [39.67, 41.91, 45.65, 44.0, 46.4, 45.5, 45.13, 45.56, 40.78, 44.11, 42.89, 38.19, 38.59, 37.55, 33.56, 34.4, 34.69, 33.85, 32.2, 35.24, 34.28, 32.04, 34.56, 38.86, 38.48, 38.75, 42.4, 42.61, 42.48, 43.63, 44.89, 42.23, 45.24, 43.83, 44.07, 42.88, 42.96, 40.46, 38.45, 37.47, 36.25, 33.2, 32.14, 32.24, 32.57, 32.77, 29.23, 31.82, 33.49, 32.53, 37.12, 40.55], "opt": [14.71, 15.78, 18.7, 16.65, 17.75, 17.76, 17.44, 18.17, 16.13, 16.09, 17.24, 14.99, 16.07, 15.04, 12.71, 14.14, 13.3, 12.86, 12.52, 13.67, 13.05, 12.51, 12.98, 14.57, 16.3, 14.03, 17.41, 16.77, 15.48, 16.36, 15.84, 15.81, 18.6, 14.79, 17.62, 16.66, 15.68, 15.26, 15.86, 14.12, 14.14, 12.29, 12.25, 12.69, 13.08, 11.9, 11.77, 12.99, 12.68, 13.04, 13.87, 16.24], "hist": [23, 15, 6, 2, 0, 1, 0, 3], "edges": [778, 818, 858, 897, 937, 977, 1016, 1056]};
+const cs=()=>getComputedStyle(document.documentElement),col=n=>cs().getPropertyValue(n).trim();
+document.querySelectorAll('[data-n]').forEach(e=>{const t=+e.dataset.n,p=e.dataset.p||'',s=e.dataset.s||'',dc=e.dataset.d??2;let s0=performance.now();(function f(n){const k=Math.min(1,(n-s0)/1200),q=1-Math.pow(1-k,3);e.textContent=p+(t*q).toLocaleString(undefined,{minimumFractionDigits:+dc,maximumFractionDigits:+dc})+s;if(k<1)requestAnimationFrame(f)})(s0)});
+let ch=[],mode='w';
+function build(){ch.forEach(c=>c.destroy());ch=[];
+const tx=col('--mu'),gr=col('--grid'),A=col('--a'),B=col('--b'),C=col('--c'),G=col('--g'),Y=col('--y');
+Chart.defaults.color=tx;Chart.defaults.font.family='system-ui,sans-serif';
+const sc={x:{grid:{color:gr},ticks:{maxTicksLimit:10}},y:{grid:{color:gr}}},base={responsive:true,maintainAspectRatio:false};
+const cx=document.getElementById('c1').getContext('2d'),g=cx.createLinearGradient(0,0,0,270);g.addColorStop(0,A+'66');g.addColorStop(1,A+'00');
+ch.push(new Chart('c1',{type:'line',data:{labels:D.conv.map((_,i)=>i+1),datasets:[{label:'Best cost ($)',data:D.conv,borderColor:A,backgroundColor:g,fill:true,pointRadius:0,tension:.3,borderWidth:2.5}]},options:{...base,plugins:{legend:{display:false}},scales:{x:{...sc.x,title:{display:true,text:'Cycle'}},y:{...sc.y,title:{display:true,text:'Cost ($)'}}}}}));
+ch.push(new Chart('c2',{type:'doughnut',data:{labels:['Production','Holding','Transport','Shortage'],datasets:[{data:[73.7,12.1,8.4,5.8],backgroundColor:[B,A,Y,C],borderColor:'transparent',hoverOffset:8}]},options:{...base,cutout:'66%',plugins:{legend:{position:'bottom'}}}}));
+const cum=a=>a.reduce((r,v,i)=>(r.push((r[i-1]||0)+v),r),[]);
+const w=D.base.map((_,i)=>i+1);
+ch.push(new Chart('c3',{type:'line',data:{labels:w,datasets:[{label:'Baseline',data:mode=='w'?D.base:cum(D.base),borderColor:C,pointRadius:0,tension:.3,borderWidth:2},{label:'Optimized',data:mode=='w'?D.opt:cum(D.opt),borderColor:G,pointRadius:0,tension:.3,borderWidth:2.5}]},options:{...base,plugins:{legend:{position:'bottom'}},scales:{x:{...sc.x,title:{display:true,text:'Week'}},y:sc.y}}}));
+ch.push(new Chart('c4',{type:'bar',data:{labels:['Factory 1','Factory 2','DC','Agent 1','Agent 2','Agent 3'],datasets:[{data:[150,100,50,50,50,50],backgroundColor:[B,B,A,G,G,G],borderRadius:8}]},options:{...base,plugins:{legend:{display:false}},scales:sc}}));
+ch.push(new Chart('c5',{type:'bar',data:{labels:D.edges.map(e=>'$'+e),datasets:[{label:'Bees',data:D.hist,backgroundColor:Y,borderRadius:6}]},options:{...base,plugins:{legend:{display:false}},scales:sc}}))}
+build();
+document.querySelectorAll('#tg button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#tg button').forEach(x=>x.classList.remove('on'));b.classList.add('on');mode=b.dataset.m;build()});
+matchMedia('(prefers-color-scheme:light)').addEventListener('change',build);
+</script></body></html>
